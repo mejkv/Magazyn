@@ -11,8 +11,8 @@ namespace MagazynEdu.DataAccess.Entities
     {
         [Required]
         [MaxLength(255)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public List<Device> Devices { get; set; }
+        public List<Device>? Devices { get; set; }
     }
 }

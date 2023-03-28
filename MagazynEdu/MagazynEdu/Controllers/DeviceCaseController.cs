@@ -16,7 +16,7 @@ namespace MagazynEdu.Controllers
         }
 
         [HttpGet]
-        [Route(template:"")]
+        [Route("")]
         public IEnumerable<DeviceCase> GetAllDevices() => this.deviceCaseRepository.GetAll();
     }
 }
