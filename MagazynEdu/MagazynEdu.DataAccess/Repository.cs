@@ -12,7 +12,7 @@ namespace MagazynEdu.DataAccess
     {
         protected readonly WarehouseStorageContext context;
 
-        private readonly DbSet<T> entities;
+        private DbSet<T> entities;
 
         public Repository(WarehouseStorageContext context)
         {
