@@ -1,4 +1,5 @@
-﻿using MagazynEdu.ApplicationsServices.API.Domain;
+﻿using AutoMapper;
+using MagazynEdu.ApplicationsServices.API.Domain;
 using MagazynEdu.DataAccess;
 using MediatR;
 
@@ -7,26 +8,23 @@ namespace MagazynEdu.ApplicationsServices.API.Handlers
     public class GetDevicesHandler : IRequestHandler<GetDevicesRequest, GetDevicesResponse>
     {
         private readonly IRepository<DataAccess.Entities.Device> deviceRepository;
+        private readonly IMapper mapper;
 
-        public GetDevicesHandler(IRepository<DataAccess.Entities.Device> deviceRepository)
+        public GetDevicesHandler(IRepository<DataAccess.Entities.Device> deviceRepository, IMapper mapper)
         {
             this.deviceRepository = deviceRepository;
+            this.mapper = mapper;
         }
 
-        public Task<GetDevicesResponse> Handle(GetDevicesRequest request, CancellationToken cancellationToken)
+        public async Task<GetDevicesResponse> Handle(GetDevicesRequest request, CancellationToken cancellationToken)
         {
-            var devices = this.deviceRepository.GetAll();
-            var domainDevices = devices.Select(x => new Domain.Models.Device()
-            {
-                Id = x.Id,
-                Title = x.Title,
-            });
-
+            var devices = await this.deviceRepository.GetAll();
+            var mappedDevice = this.mapper.Map<List<Domain.Models.Device>>(devices);
             var response = new GetDevicesResponse() 
             {
-                Data = domainDevices.ToList()
+                Data = mappedDevice
             };
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

@@ -4,8 +4,7 @@ using NLog.Web;
 using Microsoft.EntityFrameworkCore;
 using MagazynEdu.ApplicationsServices.API.Domain;
 using MediatR;
-using System.Reflection;
-using Microsoft.AspNetCore.Hosting;
+using MagazynEdu.ApplicationsServices.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +15,9 @@ builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
 builder.Host.UseNLog();
 
 //configure service
+
+builder.Services.AddAutoMapper(typeof(DevicesProfile));
+
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssemblies(typeof(ResponseBase<>).Assembly);
@@ -34,6 +36,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
+
 //configure
 
 if (app.Environment.IsDevelopment())
