@@ -33,7 +33,7 @@ namespace MagazynEdu.DataAccess.Migrations
 
                     b.HasIndex("DevicesId");
 
-                    b.ToTable("AuthorDevice");
+                    b.ToTable("AuthorDevice", (string)null);
                 });
 
             modelBuilder.Entity("MagazynEdu.DataAccess.Entities.Author", b =>
@@ -51,7 +51,7 @@ namespace MagazynEdu.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("MagazynEdu.DataAccess.Entities.Device", b =>
@@ -77,7 +77,7 @@ namespace MagazynEdu.DataAccess.Migrations
 
                     b.HasIndex("DeviceCaseId");
 
-                    b.ToTable("Devices");
+                    b.ToTable("Devices", (string)null);
                 });
 
             modelBuilder.Entity("MagazynEdu.DataAccess.Entities.DeviceCase", b =>
@@ -93,7 +93,7 @@ namespace MagazynEdu.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DeviceCases");
+                    b.ToTable("DeviceCases", (string)null);
                 });
 
             modelBuilder.Entity("AuthorDevice", b =>
