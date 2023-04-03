@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MagazynEdu.DataAccess.CQRS.Queries
+namespace MagazynEdu.DataAccess.CQRS.Commands
 {
-    public abstract class QueryBase<TResult>
+    public abstract class CommandBase<TParameter, TResult>
     {
+        public TParameter Parameter { get; set; }
+
         public abstract Task<TResult> Execute(WarehouseStorageContext context);
     }
 }

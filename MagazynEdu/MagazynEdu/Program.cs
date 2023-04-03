@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using MagazynEdu.ApplicationsServices.API.Domain;
 using MediatR;
 using MagazynEdu.ApplicationsServices.Mappings;
+using MagazynEdu.DataAccess.CQRS;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,9 @@ builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
 builder.Host.UseNLog();
 
 //configure service
+
+builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
+builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
 
 builder.Services.AddAutoMapper(typeof(DevicesProfile));
 
