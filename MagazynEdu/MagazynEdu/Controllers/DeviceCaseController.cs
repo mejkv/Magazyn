@@ -1,5 +1,9 @@
-﻿using MagazynEdu.DataAccess;
+﻿using AutoMapper;
+using MagazynEdu.ApplicationsServices.API.Domain;
+using MagazynEdu.DataAccess;
+using MagazynEdu.DataAccess.CQRS;
 using MagazynEdu.DataAccess.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MagazynEdu.Controllers
@@ -8,15 +12,19 @@ namespace MagazynEdu.Controllers
     [Route("[controller]")]
     public class DeviceCaseController : ControllerBase
     {
-        private readonly IRepository<DeviceCase> deviceCaseRepository;
+        private readonly IMediator mediator;
 
-        public DeviceCaseController(IRepository<DeviceCase> deviceCaseRepository) 
+        public DeviceCaseController(IMediator mediator)
         {
-            this.deviceCaseRepository = deviceCaseRepository;
+            this.mediator = mediator;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("")]
-        public IEnumerable<DeviceCase> GetAllDevices() => this.deviceCaseRepository.GetAll();
+        public async Task<IActionResult> GetAllDevices([FromBody] AddDeviceCaseRequest request)
+        {
+            var response = await this.mediator.Send(request);
+            return this.Ok(response);
+        }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MagazynEdu.DataAccess
+namespace MagazynEdu.DataAccess.CQRS
 {
     public class QueryExecutor : IQueryExecutor
     {
@@ -18,7 +18,7 @@ namespace MagazynEdu.DataAccess
 
         public Task<TResult> Execute<TResult>(QueryBase<TResult> query)
         {
-            return query.Execute(this.context);
+            return query.Execute(context);
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using MagazynEdu.DataAccess.CQRS.Queries;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MagazynEdu.DataAccess.CQRS.Queries;
 
-namespace MagazynEdu.DataAccess
+namespace MagazynEdu.DataAccess.CQRS
 {
     public interface IQueryExecutor
     {

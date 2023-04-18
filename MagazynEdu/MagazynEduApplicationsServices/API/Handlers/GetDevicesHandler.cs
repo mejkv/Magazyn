@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MagazynEdu.ApplicationsServices.API.Domain;
-using MagazynEdu.DataAccess;
+using MagazynEdu.DataAccess.CQRS;
 using MagazynEdu.DataAccess.CQRS.Queries;
 using MediatR;
 

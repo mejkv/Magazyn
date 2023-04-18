@@ -15,7 +15,7 @@ namespace MagazynEdu.DataAccess.CQRS.Queries
 
         public override async Task<Device> Execute(WarehouseStorageContext context)
         {
-            var device = await context.Devices.FirstAsync(x => x.Id == this.Id);
+            var device = await context.Devices.FirstOrDefaultAsync(x => x.Id == this.Id);
             return device;
         }
     }
