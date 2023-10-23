@@ -27,7 +27,6 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblies(typeof(ResponseBase<>).Assembly);
 });
 
-
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 builder.Services.AddDbContext<WarehouseStorageContext>(opt =>

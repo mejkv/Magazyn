@@ -11,11 +11,12 @@ namespace MagazynEdu.DataAccess.CQRS.Queries
     public class GetDevicesQuery : QueryBase<List<Device>>
     {
 
-        public int Id { get; set; }
+        public string Title { get; set; }
 
         public override Task<List<Device>> Execute(WarehouseStorageContext context)
         {
-            return context.Devices.ToListAsync();
+            //context.Devices.ToListAsync();
+            return context.Devices.Where(x => x.Title == this.Title).ToListAsync();
         }
     }
 }

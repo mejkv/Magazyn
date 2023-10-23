@@ -20,7 +20,10 @@ namespace MagazynEdu.ApplicationsServices.API.Handlers
 
         public async Task<GetDevicesResponse> Handle(GetDevicesRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetDevicesQuery();
+            var query = new GetDevicesQuery()
+            {
+                Title = request.Title,
+            };
             var devices = await this.queryExecutor.Execute(query);
             var mappedDevice = mapper.Map<List<Domain.Models.Device>>(devices);
             var response = new GetDevicesResponse()

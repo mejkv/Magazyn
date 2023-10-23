@@ -22,5 +22,18 @@ public class DevicesController : ControllerBase
         var response = await this.mediator.Send(request);
         return this.Ok(response);
     }
+
+    [HttpGet]
+    [Route("{deviceId}")]
+    public async Task<IActionResult> GetById([FromRoute] int deviceId)
+    {
+        var request = new GetDeviceByIdRequest()
+        {
+            DeviceId = deviceId
+        };
+
+        var response = await this.mediator.Send(request);
+        return this.Ok(response);
+    }
 }
 
